@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/ActivosTI.Api.props" />
+</Project>
