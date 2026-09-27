@@ -1,0 +1,485 @@
+{
+	"info": {
+		"_postman_id": "62c9895b-f97d-4061-8d6a-842d860463af",
+		"name": "Resguardos",
+		"description": "Peticiones para probar los resguardos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "13067717"
+	},
+	"item": [
+		{
+			"name": "Activos",
+			"item": [
+				{
+					"name": "Alta Activos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token_id}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n    \"ActivoId\": 7,\n    \"CodigoActivo\": \"ACT-0008\",\n    \"NumeroSerie\": \"DELL-SN-003\",\n    \"Categoria\": \"Laptop\",\n    \"Marca\": \"Dell\",\n    \"Modelo\": \"Latitude 5590\",\n    \"TipoPropiedad\": \"Propio\",\n    \"ProveedorId\": null,\n    \"Estado\": \"Disponible\",\n    \"UbicacionActual\": \"Oficina CDMX\",\n    \"FechaCompra\": \"2026-09-26T00:00:00\",\n    \"FechaFinRenta\": null\n  }"
+						},
+						"url": "http://localhost:5201/api/Activos"
+					},
+					"response": []
+				},
+				{
+					"name": "Activos By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token_id}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": "http://localhost:5201/api/Activos/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token_id}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5201/api/Activos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5201",
+							"path": [
+								"api",
+								"Activos"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "codigoActivo",
+									"value": "ACT-0001",
+									"disabled": true
+								},
+								{
+									"key": "categoria",
+									"value": "Laptop",
+									"disabled": true
+								},
+								{
+									"key": "estado",
+									"value": "Asignado",
+									"disabled": true
+								},
+								{
+									"key": "tipoPropiedad",
+									"value": "Arrendado",
+									"disabled": true
+								},
+								{
+									"key": "idProveedor",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Asignaciones",
+			"item": [
+				{
+					"name": "Buscar por IdActivo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token_id}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": "http://localhost:5201/api/asignaciones/activos/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Asignaciones by id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token_id}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"empleadoId\": 1,\n  \"observaciones\": \"Buenas Condiciones\"\n}"
+						},
+						"url": "http://localhost:5201/api/asignaciones/activos/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por EmpleadoId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token_id}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": "http://localhost:5201/api/asignaciones/empleados/1"
+					},
+					"response": []
+				},
+				{
+					"name": "devolver by IdActivo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token_id}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"condicionDevolucion\": \"Desgante Natural\",\n  \"observaciones\": \"Funcionando correctamente\"\n}"
+						},
+						"url": "http://localhost:5201/api/asignaciones/activos/1/devolver"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Empleados",
+			"item": [
+				{
+					"name": "Add Employee",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token_id}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"numeroEmpleado\": \"1044789\",\n  \"nombre\": \"Fernando Cortes Trejo\",\n  \"correo\": \"fernando.Cartes@gmail.com\"\n}"
+						},
+						"url": "http://localhost:5201/api/empleados"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtiene Empleados",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": "http://localhost:5201/api/empleados"
+					},
+					"response": []
+				},
+				{
+					"name": "Empleados by Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": "http://localhost:5201/api/empleados/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Proveedores",
+			"item": [
+				{
+					"name": "Consulta proveedores",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token_id}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5201/api/Proveedores?proveedorId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5201",
+							"path": [
+								"api",
+								"Proveedores"
+							],
+							"query": [
+								{
+									"key": "proveedorId",
+									"value": "1"
+								},
+								{
+									"key": "nombre",
+									"value": "mario",
+									"disabled": true
+								},
+								{
+									"key": "rfc",
+									"value": "REOM90101510",
+									"disabled": true
+								},
+								{
+									"key": "activo",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "proporcionaCompra",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "proporcionaRenta",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "proporcionaMantenimiento",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar Proveedores",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token_id}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n    \"Nombre\": \"Servicios TI Integral\",\n    \"NombreContacto\": \"Miguel Castro\",\n    \"Correo\": \"miguel.castro@serviciosti.com\",\n    \"Telefono\": \"5551001004\",\n    \"ProporcionaCompra\": false,\n    \"ProporcionaRenta\": false,\n    \"ProporcionaMantenimiento\": true,\n    \"RFC\":\"CASMI220425432\",\n    \"Activo\": 1,\n    \"FechaCreacion\": \"2026-09-24T03:19:45.0770482\"\n  }"
+						},
+						"url": "http://localhost:5201/api/Proveedores"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const getTokenRequest = {",
+							"    url: 'http://localhost:5201/api/auth/login', // Reemplaza con tu URL de autenticación",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Content-Type': 'application/json'",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({",
+							"  \"usuario\": \"admin\",",
+							"  \"contrasena\": \"Admin123\"",
+							"})",
+							"    }",
+							"};",
+							"",
+							"pm.sendRequest(getTokenRequest, function (err, res) {",
+							"    if (err) {",
+							"        console.error(err);",
+							"        return;",
+							"    }",
+							"    ",
+							"    // Extrae el token de la respuesta (ajusta 'token' según el JSON de tu API)",
+							"    const jsonData = res.json();",
+							"    const token = jsonData.token; ",
+							"    // Guarda el token en una variable de entorno",
+							"    pm.environment.set('token_id', token);",
+							"    pm.globals.set('mi_token_global', token);",
+							"     console.log(pm.environment.get(\"token_id\"));",
+							"",
+							"    console.log('Token obtenido y guardado con éxito');",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": "http://localhost:5201/api/auth/login"
+			},
+			"response": []
+		}
+	]
+}
